@@ -21,21 +21,6 @@ public class ReviewToTFReview {
 	}
 
 	private TFReview createTfReview(Review review, Map<String, Integer> allTermsFrequency) {
-
-	      /*DocumentPreprocessor dp = new DocumentPreprocessor(arg);
-	      for (List sentence : dp) {
-	        System.out.println(sentence);
-	      }
-	     
-	      PTBTokenizer ptbt = new PTBTokenizer(new FileReader(arg),
-	              new CoreLabelTokenFactory(), "");
-	      for (CoreLabel label; ptbt.hasNext(); ) {
-	        label = ptbt.next();
-	        System.out.println(label);
-	      }
-	    }*/
-		
-		
 		String[] terms = review.text.split("\\s");
 		
 		TFReview r = new TFReview(review);

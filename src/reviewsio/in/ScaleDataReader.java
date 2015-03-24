@@ -47,17 +47,22 @@ public class ScaleDataReader implements IReader {
 						Double r = Double.parseDouble(rating);
 						r = r * 10;
 						
-						r = Math.rint(r);
-						if(r!=Math.ceil(r)) {
-							System.out.println(ratingFile.split("rating.")[1] + " " + rating);
-							System.out.println(r);
+						if(isDot5(r)) {
+							System.out.println("filter out a .5 : " + r);
+							continue;
+						} else {
+							r = Math.rint(r);
+							if(r!=Math.ceil(r)) {
+								System.out.println(ratingFile.split("rating.")[1] + " " + rating);
+								System.out.println(r);
+							}
+							
+							Review review = new Review(ratingFile.split("rating.")[1], "NA", r, subj);
+							reviews.add(review);
+							
+							//System.out.println(review);
+							x++;
 						}
-						
-						Review review = new Review(ratingFile.split("rating.")[1], "NA", r, subj);
-						reviews.add(review);
-						
-						//System.out.println(review);
-						x++;
 					}
 				} 
 			}catch (Exception e) {
@@ -66,6 +71,11 @@ public class ScaleDataReader implements IReader {
 			System.out.println(x);
 		}
 		return reviews;
+	}
+
+	private boolean isDot5(Double r) {
+		String text = Double.toString(Math.abs(r));
+		return text.matches(".*\\.50*");//(".5") || text.endsWith(".50") || text.endsWith(".50");
 	}
 	
 }

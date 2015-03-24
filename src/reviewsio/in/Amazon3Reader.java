@@ -88,18 +88,23 @@ public class Amazon3Reader implements IReader {
 					System.out.println("Text: " + text);*/
 					
 					Double ratingD = Double.valueOf(rating.trim());
-					
-					if(ratingD!=Math.ceil(ratingD)) {
-						//System.out.println(ratingD);
-					}
-					
-					Review review = new TitleReview(user, item, ratingD, title.trim(), text.trim());
-					reviews.add(review);
-					
-					i++;
-					if (i == 300000)
-						break;
-					
+					if(isDot5(ratingD)) {
+						System.out.println("filter out a .5 : " + ratingD);
+						continue;
+					} else {
+						ratingD = Math.rint(ratingD);
+						
+						if(ratingD!=Math.ceil(ratingD)) {
+							//System.out.println(ratingD);
+						}
+						
+						Review review = new TitleReview(user, item, ratingD, title.trim(), text.trim());
+						reviews.add(review);
+						
+						i++;
+						if (i == 100000)
+							break;
+					}	
 				} catch(Exception e) {
 					e.printStackTrace();
 					System.out.println(line);
@@ -112,6 +117,11 @@ public class Amazon3Reader implements IReader {
 		return reviews;
 	}
 	
+	private boolean isDot5(Double ratingD) {
+		String text = Double.toString(Math.abs(ratingD));
+		return text.matches(".*\\.50*");//(".5") || text.endsWith(".50") || text.endsWith(".50");
+	}
+
 	public static void main(String[] args) {
 		String input = "C:/Users/Thomas/Downloads/reviewsNew/reviewsNew.txt";
 		

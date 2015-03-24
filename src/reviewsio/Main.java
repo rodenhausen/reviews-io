@@ -13,22 +13,22 @@ import reviewsio.model.TitleReview;
 import reviewsio.out.CSVReviewsWriter;
 
 public class Main {
-
+	
 	public static void main(String[] args) {
 		String scaleData = "scale_data";
 		String yelpData = "yelp_dataset_challenge_academic_dataset/yelp_academic_dataset_review.json";
 		String amazonData = "amazon-meta.txt/amazon-meta.txt";
 		String amazon2Data = "productinfo/productinfo.txt";
-		String amazon3Data = "C:/Users/Thomas/Downloads/reviewsNew/reviewsNew.txt";
+		String amazon3Data = "reviewsNew/reviewsNew.txt";
 		
-		IReader reader = new Amazon3Reader(amazon3Data);
-		//IReader reader = new ScaleDataReader(scaleData);
+		//IReader reader = new Amazon3Reader(amazon3Data);
+		IReader reader = new ScaleDataReader(scaleData);
 		//IReader reader = new YelpReader(yelpData);
 		List<Review> reviews = reader.read();
 		
 		reviews = normalize(reviews);
 		
-		CSVReviewsWriter writer = new CSVReviewsWriter("amazon300k.csv");
+		CSVReviewsWriter writer = new CSVReviewsWriter("scale.csv");
 		writer.write(reviews);
 		
 		//CSVTFReviewsWriter writer = new CSVTFReviewsWriter("scale_data_out3.csv");

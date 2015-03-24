@@ -48,8 +48,8 @@ public class YelpReader implements IReader {
 				reviews.add(review);
 				i++;
 				
-				if (i == 100000)
-					break;
+				//if (i == 50000)
+				//	break;
 			}
 			System.out.println(i);
 		} catch (Exception e) {
