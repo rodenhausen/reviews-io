@@ -20,7 +20,7 @@ public class TermFrequencyMain {
 	private static Map<String, Integer> allTermsFrequency = new HashMap<String, Integer>();
 	
 	public static void main(String[] args) throws IOException {
-		String name = "scale";
+		String name = "amazon100k";
 		final String input = name + ".csv";
 		final String output = name + "_termFrequency.csv";
 
@@ -37,9 +37,9 @@ public class TermFrequencyMain {
 			String user = line[0];
 			String item = line[1];
 			String rating = line[2];
-			// String title = line[3];
-			// String review = line[4];
-			String review = line[3];
+			String title = line[3].toLowerCase();
+			String review = line[4].toLowerCase();
+			//String review = line[3].toLowerCase();
 
 			WordTokenizer wordTokenizer = new WordTokenizer();
 			wordTokenizer.tokenize(review);
@@ -53,15 +53,18 @@ public class TermFrequencyMain {
 			}
 			
 			for(String term : terms) {
-				if(allTermsFrequency.containsKey(term))
+				if(!allTermsFrequency.containsKey(term))
 					allTermsFrequency.put(term, 0);
-				allTermsFrequency.put(term, allTermsFrequency.get(term));
+				allTermsFrequency.put(term, allTermsFrequency.get(term) + 1);
 			}
 			
 			
-			for(String term : allTermsFrequency.keySet()) {
-				writer.writeNext(new String[] { term, String.valueOf(allTermsFrequency.get(term)) });
-			}
+		}
+		System.out.println(allTermsFrequency.size());
+		
+		for(String term : allTermsFrequency.keySet()) {
+			System.out.println(term + " " + allTermsFrequency.get(term));
+			writer.writeNext(new String[] { term, String.valueOf(allTermsFrequency.get(term)) });
 		}
 
 		reader.close();

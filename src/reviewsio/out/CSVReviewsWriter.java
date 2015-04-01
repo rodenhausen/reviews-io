@@ -20,14 +20,17 @@ public class CSVReviewsWriter {
 		try (au.com.bytecode.opencsv.CSVWriter csvWriter = new au.com.bytecode.opencsv.CSVWriter(
 				new FileWriter(new File(output)), ',', au.com.bytecode.opencsv.CSVWriter.DEFAULT_QUOTE_CHARACTER, '\\')) {
 			if(reviews.get(0) instanceof TitleReview)
-				csvWriter.writeNext(new String[] {"User", "Item", "Rating", "Title", "Review"});
+				//csvWriter.writeNext(new String[] {"User", "Item", "Rating", "Title", "Review"});
+				csvWriter.writeNext(new String[] {"User", "Item", "Rating", "Review"});
 			else
 				csvWriter.writeNext(new String[] {"User", "Item", "Rating", "Review"});
 			for(Review review : reviews) {
 				if(review instanceof TitleReview) 
-					csvWriter.writeNext(new String[] { String.valueOf(review.user), String.valueOf(review.item),
+					/*csvWriter.writeNext(new String[] { String.valueOf(review.user), String.valueOf(review.item),
 							String.valueOf(review.rating), ((TitleReview)review).title, 
-							review.text });
+							review.text }); */
+					csvWriter.writeNext(new String[] { String.valueOf(review.user), String.valueOf(review.item),
+							String.valueOf(review.rating), review.text });
 				else
 					csvWriter.writeNext(new String[] { String.valueOf(review.user), String.valueOf(review.item),
 							String.valueOf(review.rating), review.text });

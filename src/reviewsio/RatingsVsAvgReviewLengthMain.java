@@ -36,9 +36,9 @@ public class RatingsVsAvgReviewLengthMain {
 			String user = line[0];
 			String item = line[1];
 			String rating = line[2];
-			//String title = line[3];
-			//String review = line[4];
-			String review = line[3];
+			//String title = line[3].toLowerCase;
+			//String review = line[4].toLowerCase();
+			String review = line[3].toLowerCase();
 			
 			WordTokenizer wordTokenizer = new WordTokenizer();
 			wordTokenizer.tokenize(review);

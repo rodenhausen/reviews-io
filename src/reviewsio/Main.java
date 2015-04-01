@@ -21,14 +21,14 @@ public class Main {
 		String amazon2Data = "productinfo/productinfo.txt";
 		String amazon3Data = "reviewsNew/reviewsNew.txt";
 		
-		//IReader reader = new Amazon3Reader(amazon3Data);
-		IReader reader = new ScaleDataReader(scaleData);
+		IReader reader = new Amazon3Reader(amazon3Data);
+		//IReader reader = new ScaleDataReader(scaleData);
 		//IReader reader = new YelpReader(yelpData);
 		List<Review> reviews = reader.read();
 		
 		reviews = normalize(reviews);
 		
-		CSVReviewsWriter writer = new CSVReviewsWriter("scale.csv");
+		CSVReviewsWriter writer = new CSVReviewsWriter("amazon100k.csv");
 		writer.write(reviews);
 		
 		//CSVTFReviewsWriter writer = new CSVTFReviewsWriter("scale_data_out3.csv");
