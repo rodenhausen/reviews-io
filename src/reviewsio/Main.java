@@ -28,7 +28,7 @@ public class Main {
 		
 		reviews = normalize(reviews);
 		
-		CSVReviewsWriter writer = new CSVReviewsWriter("amazon100k.csv");
+		CSVReviewsWriter writer = new CSVReviewsWriter("amazon20k.csv");
 		writer.write(reviews);
 		
 		//CSVTFReviewsWriter writer = new CSVTFReviewsWriter("scale_data_out3.csv");

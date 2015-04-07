@@ -21,19 +21,19 @@ public class CSVReviewsWriter {
 				new FileWriter(new File(output)), ',', au.com.bytecode.opencsv.CSVWriter.DEFAULT_QUOTE_CHARACTER, '\\')) {
 			if(reviews.get(0) instanceof TitleReview)
 				//csvWriter.writeNext(new String[] {"User", "Item", "Rating", "Title", "Review"});
-				csvWriter.writeNext(new String[] {"User", "Item", "Rating", "Review"});
+				csvWriter.writeNext(new String[] {"User", "Item", "Review", "Rating"});
 			else
-				csvWriter.writeNext(new String[] {"User", "Item", "Rating", "Review"});
+				csvWriter.writeNext(new String[] {"User", "Item", "Review", "Rating"});
 			for(Review review : reviews) {
 				if(review instanceof TitleReview) 
 					/*csvWriter.writeNext(new String[] { String.valueOf(review.user), String.valueOf(review.item),
 							String.valueOf(review.rating), ((TitleReview)review).title, 
 							review.text }); */
 					csvWriter.writeNext(new String[] { String.valueOf(review.user), String.valueOf(review.item),
-							String.valueOf(review.rating), review.text });
+							review.text, String.valueOf(review.rating) });
 				else
 					csvWriter.writeNext(new String[] { String.valueOf(review.user), String.valueOf(review.item),
-							String.valueOf(review.rating), review.text });
+							review.text, String.valueOf(review.rating) });
 			}
 			csvWriter.flush();
 		} catch (Exception e) {

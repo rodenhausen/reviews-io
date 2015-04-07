@@ -102,7 +102,7 @@ public class Amazon3Reader implements IReader {
 						reviews.add(review);
 						
 						i++;
-						if (i == 100000)
+						if (i == 20000)
 							break;
 					}	
 				} catch(Exception e) {
